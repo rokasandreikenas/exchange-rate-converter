@@ -1,7 +1,11 @@
 .currency-column {
   &-container {
     width: 40%;
-    padding: 15px;
+    padding: 30px 10px;
+
+    @media (max-width: 768px) {
+      width: 90%;
+    }
   }
 
   &-title {
@@ -16,7 +20,6 @@
     margin-top: 20px;
 
     span.currency {
-      // bottom: 40px;
       font-size: 22px;
       font-weight: 100;
       position: absolute;

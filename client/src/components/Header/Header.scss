@@ -1,0 +1,22 @@
+@import "../../scss/colors";
+
+.header {
+    @media (max-width: 768px) {
+        padding: 10px;
+    }
+    padding-bottom: 20px;
+    &-title {
+        color: $title-color;
+        font-weight: 500;
+        margin: 0;
+        padding: 0;
+    }
+
+    &-date {
+        font-size: 12px;
+        color: $date-color;
+        font-weight: 300;
+        margin: 0;
+        padding: 0;
+    }
+}

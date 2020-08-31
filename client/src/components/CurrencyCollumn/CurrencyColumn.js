@@ -11,10 +11,8 @@ const CurrencyColumn = ({
   options,
   inputValue,
   setInputValue,
-  defaultValue,
   readOnly,
 }) => {
-  console.log(selectedOption, inputValue, defaultValue);
   return (
     <div className="currency-column-container">
       <div className="currency-column-title">{title}</div>
@@ -23,18 +21,17 @@ const CurrencyColumn = ({
         onChange={(e) => setSelectedOption(e)}
         options={options}
         placeholder="Choose currency..."
-        // defaultValue={defaultValue}
       />
       <div className="currency-column-input">
         <span className="currency">
-          {getSymbolFromCurrency(defaultValue.label)}
+          {getSymbolFromCurrency(selectedOption.label)}
         </span>
         <input
+          type="number"
           name="amount"
           placeholder="0"
           value={inputValue}
           onChange={(e) => setInputValue(e.currentTarget.value)}
-          // defaultValue={defaultValue.value}
           readOnly={readOnly}
         />
       </div>
@@ -49,6 +46,7 @@ CurrencyColumn.propTypes = {
   selectedOption: PropTypes.any,
   setSelectedOption: PropTypes.func.isRequired,
   options: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  inputValue: PropTypes.number,
-  setInputValue: PropTypes.func,
+  inputValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  setInputValue: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
+  readOnly: PropTypes.bool,
 };

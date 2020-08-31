@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import CurrencyColumn from "../CurrencyCollumn";
 import "./CurrencyConverter.scss";
 
@@ -8,20 +9,18 @@ const CurrencyConverter = ({ rates }) => {
   });
   const eurSelectOption = [{ value: 1, label: "EUR" }];
 
+  const firstOption = formatSelectOption.find(
+    (currency) => currency.label === "USD"
+  );
+
   const [fromSelectedOption, setFromSelectedOption] = useState(
     eurSelectOption[0]
   );
-  const [toSelectedOption, setToSelectedOption] = useState(
-    rates && formatSelectOption.find((currency) => currency.name === "USD")
+  const [toSelectedOption, setToSelectedOption] = useState(firstOption);
+  const [fromInputValue, setFromInputValue] = useState(
+    eurSelectOption[0].value
   );
-  const [fromInputValue, setFromInputValue] = useState();
-  const [toInputValue, setToInputValue] = useState();
-
-  if (rates.length === 0) {
-    return <div>...</div>;
-  }
-
-  console.log(formatSelectOption.find((currency) => currency.label === "USD"));
+  const [setToInputValue] = useState();
 
   return (
     <div className="currency-form">
@@ -30,21 +29,20 @@ const CurrencyConverter = ({ rates }) => {
         selectedOption={fromSelectedOption}
         setSelectedOption={setFromSelectedOption}
         options={eurSelectOption}
-        defaultValue={eurSelectOption[0]}
         inputValue={fromInputValue}
         setInputValue={setFromInputValue}
       />
-      {/* <button>Change</button> */}
-
+      <div className="symbol-container">
+        <div className="equal-symbol">
+          <i>=</i>
+        </div>
+      </div>
       <CurrencyColumn
         title="To"
         selectedOption={toSelectedOption}
         setSelectedOption={setToSelectedOption}
         options={formatSelectOption}
-        defaultValue={formatSelectOption.find(
-          (currency) => currency.label === "USD"
-        )}
-        inputValue={toInputValue}
+        inputValue={(fromInputValue * toSelectedOption.value).toFixed(2)}
         setInputValue={setToInputValue}
         readOnly={true}
       />
@@ -53,3 +51,5 @@ const CurrencyConverter = ({ rates }) => {
 };
 
 export default CurrencyConverter;
+
+CurrencyConverter.propTypes = { rates: PropTypes.array.isRequired };

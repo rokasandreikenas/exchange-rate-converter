@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-import "./App.css";
-import CurrencyConverter from "./components/CurrencyConverter/CurrencyConverter";
+import CurrencyConverter from "./components/CurrencyConverter";
+import Header from "./components/Header";
+import "./App.scss";
 
 const App = () => {
   const [rates, setRates] = useState([]);
@@ -17,10 +17,19 @@ const App = () => {
     fetchData();
   }, []);
 
+  if (rates.length === 0) {
+    return <div>...</div>;
+  }
+
   return (
-    <div className="container">
-      <CurrencyConverter rates={rates} />
-    </div>
+    <section className="content">
+      <div className="container">
+        <div className="main">
+          <Header />
+          <CurrencyConverter rates={rates} />
+        </div>
+      </div>
+    </section>
   );
 };
 
