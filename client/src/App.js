@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CurrencyConverter from "./components/CurrencyConverter";
 import Header from "./components/Header";
+import Loader from "./components/Loader/Loader";
 import "./App.scss";
 
 const App = () => {
@@ -18,7 +19,7 @@ const App = () => {
   }, []);
 
   if (rates.length === 0) {
-    return <div>...</div>;
+    return <Loader />;
   }
 
   return (
