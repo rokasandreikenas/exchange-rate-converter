@@ -11,6 +11,9 @@ dotenv.config({ path: "./config/config.env" });
 // Database
 connectDB();
 
+// Logger
+const logger = require("./config/logger");
+
 const app = express();
 
 const PORT = process.env.PORT || 5000;
@@ -20,6 +23,8 @@ getRates();
 
 const handleError = (err) => {
   console.error(err);
+  logger.log("error", error)
+
 };
 
 const convertRates = async () => {
@@ -37,10 +42,22 @@ const convertRates = async () => {
             });
 
             if (doesCurrencyExist) {
-              currency.updateOne({ currencyId: index }, function (err) {
-                if (err) return handleError(err);
-                // updated
-              });
+              Currency.updateOne(
+                { currencyId: index },
+                {
+                  $set: {
+                    "name": rate.CcyAmt[1].Ccy[0],
+                    "rate": rate.CcyAmt[1].Amt[0],
+                  },
+                  $currentDate: { lastModified: true }
+                },
+                function (err, doc) {
+                  if (err) {
+                    return handleError(err);
+                  }
+                  // updated
+                }
+              );
             } else {
               currency.save(function (err) {
                 if (err) return handleError(err);
@@ -55,6 +72,7 @@ const convertRates = async () => {
     });
   } catch (error) {
     console.error(error);
+    logger.log("error", error)
   }
 };
 
@@ -66,11 +84,13 @@ app.get("/rates", async (req, res) => {
   try {
     const rates = await Currency.find({});
     res.json(rates);
+    logger.log("info", "GET /rates called");
   } catch (error) {
     console.error(error);
+    logger.log("error", error)
   }
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
+  logger.log("info", `Server running on ${PORT}`);
 });

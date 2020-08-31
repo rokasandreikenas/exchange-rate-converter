@@ -1,0 +1,32 @@
+@import "../../scss/colors";
+
+.symbol-container {
+  display: flex;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  padding: 10px;
+  margin-top: 10px;
+  align-items: center;
+  background: $equal-first-color;
+  cursor: pointer;
+
+  .symbol {
+    display: flex;
+    min-height: 100%;
+    min-width: 100%;
+    border-radius: 50%;
+    background: $equal-second-color;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: $equal-first-color;
+    }
+
+    i {
+      font-size: 24px;
+      color: $white-color;
+    }
+  }
+}

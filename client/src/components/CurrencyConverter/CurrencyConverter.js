@@ -2,25 +2,30 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import CurrencyColumn from "../CurrencyCollumn";
 import "./CurrencyConverter.scss";
+import Switch from "../Switch";
 
-const CurrencyConverter = ({ rates }) => {
-  const formatSelectOption = rates.map((option) => {
-    return { value: option.rate, label: option.name };
-  });
-  const eurSelectOption = [{ value: 1, label: "EUR" }];
-
-  const firstOption = formatSelectOption.find(
-    (currency) => currency.label === "USD"
-  );
-
-  const [fromSelectedOption, setFromSelectedOption] = useState(
-    eurSelectOption[0]
-  );
+const CurrencyConverter = ({ rates, baseRate, firstOption }) => {
+  const [fromSelectedOption, setFromSelectedOption] = useState(baseRate[0]);
   const [toSelectedOption, setToSelectedOption] = useState(firstOption);
-  const [fromInputValue, setFromInputValue] = useState(
-    eurSelectOption[0].value
-  );
-  const [setToInputValue] = useState();
+  const [fromInputValue, setFromInputValue] = useState(baseRate[0].value);
+  const [setToInputValue] = useState(firstOption.value);
+  const [currencySwapped, setCurrencySwapped] = useState(false);
+
+  const handleCurrencySwap = () => {
+    setFromSelectedOption(toSelectedOption);
+    setToSelectedOption(fromSelectedOption);
+    setCurrencySwapped(!currencySwapped);
+  };
+
+  const currencyActions = () => {
+    if (currencySwapped) {
+      return (
+        (toSelectedOption.value / fromSelectedOption.value) * fromInputValue
+      );
+    } else {
+      return toSelectedOption.value * fromInputValue;
+    }
+  };
 
   return (
     <div className="currency-form">
@@ -28,21 +33,17 @@ const CurrencyConverter = ({ rates }) => {
         title="From"
         selectedOption={fromSelectedOption}
         setSelectedOption={setFromSelectedOption}
-        options={eurSelectOption}
+        options={currencySwapped ? rates : baseRate}
         inputValue={fromInputValue}
         setInputValue={setFromInputValue}
       />
-      <div className="symbol-container">
-        <div className="equal-symbol">
-          <i>=</i>
-        </div>
-      </div>
+      <Switch onClick={handleCurrencySwap} />
       <CurrencyColumn
         title="To"
         selectedOption={toSelectedOption}
         setSelectedOption={setToSelectedOption}
-        options={formatSelectOption}
-        inputValue={(fromInputValue * toSelectedOption.value).toFixed(2)}
+        options={currencySwapped ? baseRate : rates}
+        inputValue={currencyActions().toFixed(2)}
         setInputValue={setToInputValue}
         readOnly={true}
       />
@@ -52,4 +53,7 @@ const CurrencyConverter = ({ rates }) => {
 
 export default CurrencyConverter;
 
-CurrencyConverter.propTypes = { rates: PropTypes.array.isRequired };
+CurrencyConverter.propTypes = {
+  rates: PropTypes.array.isRequired,
+  baseRate: PropTypes.array.isRequired,
+};

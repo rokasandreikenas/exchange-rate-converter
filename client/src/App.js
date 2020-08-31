@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CurrencyConverter from "./components/CurrencyConverter";
 import Header from "./components/Header";
-import Loader from "./components/Loader/Loader";
+import Loader from "./components/Loader";
+import { baseRate } from "./static/baseRate";
 import "./App.scss";
 
 const App = () => {
@@ -12,7 +13,11 @@ const App = () => {
     const fetchData = async () => {
       const result = await axios("/rates");
 
-      setRates(result.data);
+      setRates(
+        result.data.map((option) => {
+          return { value: option.rate, label: option.name };
+        })
+      );
     };
 
     fetchData();
@@ -22,12 +27,18 @@ const App = () => {
     return <Loader />;
   }
 
+  const formatFirstOption = rates.find((currency) => currency.label === "USD");
+
   return (
     <section className="content">
       <div className="container">
         <div className="main">
           <Header />
-          <CurrencyConverter rates={rates} />
+          <CurrencyConverter
+            rates={rates}
+            baseRate={baseRate}
+            firstOption={formatFirstOption}
+          />
         </div>
       </div>
     </section>
