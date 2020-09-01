@@ -6,9 +6,6 @@ const connectDB = require("./config/db");
 const getRates = require("./axios/getRates");
 const Currency = require("./models/Currency");
 
-
-
-
 // Load config
 dotenv.config({ path: "./config/config.env" });
 
