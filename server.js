@@ -31,6 +31,8 @@ const handleError = (err) => {
 
 };
 
+// Convert rates from xml to JSon and save to DB
+
 const convertRates = async () => {
   try {
     const doesCurrencyExist = await Currency.exists({});
