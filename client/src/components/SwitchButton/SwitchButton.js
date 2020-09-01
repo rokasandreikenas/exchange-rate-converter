@@ -1,7 +1,7 @@
 import React from "react";
-import "./Switch.scss";
+import "./SwitchButton.scss";
 
-const Switch = ({ onClick }) => {
+const SwitchButton = ({ onClick }) => {
   return (
     <div className="symbol-container" onClick={onClick}>
       <div className="symbol">
@@ -11,4 +11,4 @@ const Switch = ({ onClick }) => {
   );
 };
 
-export default Switch;
+export default SwitchButton;

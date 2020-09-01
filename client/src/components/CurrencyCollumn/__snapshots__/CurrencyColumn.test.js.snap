@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurrencyColumn renders CurrencyColumn component correctly  1`] = `
+<div
+  className="currency-column-container"
+>
+  <div
+    className="currency-column-title"
+  >
+    Mock title
+  </div>
+  <StateManager
+    defaultInputValue=""
+    defaultMenuIsOpen={false}
+    defaultValue={null}
+    onChange={[Function]}
+    options={
+      Array [
+        Object {
+          "label": "mock2",
+          "value": 2,
+        },
+      ]
+    }
+    placeholder="Choose currency..."
+    value={
+      Object {
+        "label": "mock",
+        "value": 1,
+      }
+    }
+  />
+  <div
+    className="currency-column-input"
+  >
+    <span
+      className="currency"
+    />
+    <input
+      name="amount"
+      onChange={[Function]}
+      placeholder="0"
+      readOnly={false}
+      type="number"
+      value={1}
+    />
+  </div>
+</div>
+`;

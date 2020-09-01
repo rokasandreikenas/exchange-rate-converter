@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SwitchButton renders SwitchButton component correctly  1`] = `
+<div
+  className="symbol-container"
+  onClick={[Function]}
+>
+  <div
+    className="symbol"
+  >
+    <i
+      className="fas fa-exchange-alt"
+    />
+  </div>
+</div>
+`;

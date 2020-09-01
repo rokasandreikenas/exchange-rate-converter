@@ -1,0 +1,45 @@
+.currency-column-container {
+  width: 40%;
+  padding: 30px 10px;
+}
+
+@media (max-width: 768px) {
+  .currency-column-container {
+    width: 90%;
+  }
+}
+
+.currency-column-title {
+  font-size: 11px;
+  margin-bottom: 5px;
+  color: rgba(0, 0, 0, 0.6);
+  text-transform: uppercase;
+}
+
+.currency-column-input {
+  position: relative;
+  margin-top: 20px;
+}
+
+.currency-column-input span.currency {
+  font-size: 22px;
+  font-weight: 100;
+  position: absolute;
+  color: rgba(0, 0, 0, 0.6);
+  margin-top: 33px;
+}
+
+.currency-column-input input {
+  height: 100px;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 52px;
+  font-weight: 200;
+  text-indent: 50px;
+  margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  background: transparent;
+  border-bottom: 1px solid #eee;
+}
+/*# sourceMappingURL=CurrencyColumn.css.map */

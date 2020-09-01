@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import CurrencyColumn from "../CurrencyCollumn";
 import "./CurrencyConverter.scss";
-import Switch from "../Switch";
+import SwitchButton from "../SwitchButton";
 
 const CurrencyConverter = ({ rates, baseRate, firstOption }) => {
   const [fromSelectedOption, setFromSelectedOption] = useState(baseRate[0]);
@@ -37,7 +37,7 @@ const CurrencyConverter = ({ rates, baseRate, firstOption }) => {
         inputValue={fromInputValue}
         setInputValue={setFromInputValue}
       />
-      <Switch onClick={handleCurrencySwap} />
+      <SwitchButton onClick={handleCurrencySwap} />
       <CurrencyColumn
         title="To"
         selectedOption={toSelectedOption}
@@ -56,4 +56,5 @@ export default CurrencyConverter;
 CurrencyConverter.propTypes = {
   rates: PropTypes.array.isRequired,
   baseRate: PropTypes.array.isRequired,
+  firstOption: PropTypes.array.isRequired,
 };

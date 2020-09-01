@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader renders Loader component correctly  1`] = `
+<img
+  alt="IBM logo"
+  className="loader"
+  src="icons8-ibm.svg"
+/>
+`;

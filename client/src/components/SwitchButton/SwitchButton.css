@@ -1,0 +1,41 @@
+.symbol-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  padding: 10px;
+  margin-top: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #4987df59;
+  cursor: pointer;
+}
+
+.symbol-container .symbol {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100%;
+  min-width: 100%;
+  border-radius: 50%;
+  background: #4987df;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.symbol-container .symbol:hover {
+  background: #4987df59;
+}
+
+.symbol-container .symbol i {
+  font-size: 24px;
+  color: #ffffff;
+}
+/*# sourceMappingURL=SwitchButton.css.map */

@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,cAAc,CAAC;EACb,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,aAAa;CAM/B;;AAJC,MAAM,EAAE,SAAS,EAAE,KAAK;EAJ1B,AAAA,cAAc,CAAC;IAKX,cAAc,EAAE,MAAM;IACtB,WAAW,EAAE,MAAM;GAEtB",
+    "sources": [
+        "CurrencyConverter.scss",
+        "../../scss/_colors.scss"
+    ],
+    "names": [],
+    "file": "CurrencyConverter.css"
+}

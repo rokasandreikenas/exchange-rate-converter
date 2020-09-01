@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,UAAU,CAAC;EACT,SAAS,EAAE,MAAM;EACjB,MAAM,EAAE,SAAS;CAClB;;AAED,AAAA,KAAK,CAAC;EACJ,aAAa,EAAE,GAAG;EAClB,UAAU,EAAE,GAAG,CAAC,GAAG,CAAC,IAAI,CCPZ,OAAO;EDQnB,OAAO,EAAE,IAAI;EACb,gBAAgB,ECRJ,OAAO;CDSpB",
+    "sources": [
+        "Currency.scss",
+        "../scss/_colors.scss"
+    ],
+    "names": [],
+    "file": "Currency.css"
+}
