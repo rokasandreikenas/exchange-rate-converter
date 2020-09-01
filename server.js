@@ -1,10 +1,14 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const path = require('path');
+const parseString = require("xml2js").parseString;
 const connectDB = require("./config/db");
 const getRates = require("./axios/getRates");
-const parseString = require("xml2js").parseString;
-
 const Currency = require("./models/Currency");
+
+
+
+
 // Load config
 dotenv.config({ path: "./config/config.env" });
 
@@ -15,6 +19,13 @@ connectDB();
 const logger = require("./config/logger");
 
 const app = express();
+
+// React app 
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 const PORT = process.env.PORT || 5000;
 
