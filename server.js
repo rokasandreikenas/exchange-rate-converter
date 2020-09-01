@@ -20,15 +20,6 @@ const logger = require("./config/logger");
 
 const app = express();
 
-// React app 
-app.use(express.static("client/build"));
-
-app.use(express.static(path.join(__dirname, 'build')));
-
-app.get('/*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client", 'build', 'index.html'));
-});
-
 const PORT = process.env.PORT || 5000;
 
 // External API call
@@ -96,6 +87,7 @@ convertRates();
 app.get("/rates", async (req, res) => {
   try {
     const rates = await Currency.find({});
+    if (!rates) throw Error('No rates exist');
     res.json(rates);
     logger.log("info", "GET /rates called");
   } catch (error) {
@@ -103,6 +95,16 @@ app.get("/rates", async (req, res) => {
     logger.log("error", error)
   }
 });
+
+// React app 
+app.use(express.static("client/build"));
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", 'build', 'index.html'));
+});
+
 
 app.listen(PORT, () => {
   logger.log("info", `Server running on ${PORT}`);
